@@ -1,5 +1,5 @@
 <template>
-  <div class="Job" :class="{ 'error': jobData.color == 'red', 'success': jobData.color == 'blue', 'progress': jobData.color == 'blue_anime' }">
+  <div class="Job" :class="{ 'error': jobData.color == 'red', 'success': jobData.color == 'blue', 'progress': jobData.color == 'blue_anime' || jobData.color == 'red_anime', 'inactive': jobData.color == 'disabled' }">
     <div class="Job-name">
       {{ name }}
     </div>
@@ -44,7 +44,7 @@ export default {
 
 .Job {
   flex-grow: 0;
-  padding: 1vh 1vw;
+  padding: 1vh 2vw;
   font-size: 4vh;
   display: flex;
   flex-grow: 1;
@@ -52,8 +52,8 @@ export default {
   border-width: 0 0 0.5vh 0;
   border-style: solid;
   &.error {
-    background-color: #ce8383;
-    border-color: darken(#ce8383, 10%);
+    background-color: #c07070;
+    border-color: darken(#c07070, 10%);
   }
   &.success {
     background-color: #459a45;
@@ -62,6 +62,10 @@ export default {
   &.progress {
     background-color: #ffbc00;
     border-color: darken(#ffbc00, 10%);
+  }
+  &.inactive {
+    background-color: #d1d1d1;
+    border-color: darken(#d1d1d1, 10%);
   }
   &-name {
   }
