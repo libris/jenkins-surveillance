@@ -41,7 +41,7 @@ export default {
 
 .JenkinsData {
   width: 100vw;
-  margin: 2vh 0;
+  margin: 0;
   display: flex;
   align-items: stretch;
   flex-direction: column;

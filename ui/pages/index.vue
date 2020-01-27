@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <JenkinsData v-if="fetchedData" :table-data="fetchedData" />
+    <h1>LIBRIS-DEV STATUS</h1>
+    <div class="data-container">
+      <JenkinsData v-if="fetchedData" :table-data="fetchedData" />
+    </div>
   </div>
 </template>
 
@@ -47,12 +50,23 @@ export default {
 
 <style>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
+
+}
+
+.data-container {
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 5vh;
+  margin: 0 0 1vh 0;
+  padding: 0;
 }
 
 .title {
