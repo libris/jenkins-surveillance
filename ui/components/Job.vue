@@ -4,10 +4,10 @@
       {{ name }}
     </div>
     <div class="Job-progress">
-      <i v-if="inProgress" class="fa fa-refresh fa-spin"></i>
-      <i v-if="failure" class="fa fa-times"></i>
-      <i v-if="success" class="fa fa-check"></i>
-      <i v-if="inactive" class="fa fa-pause"></i>
+      <i v-if="inProgress" class="fa fa-fw fa-refresh fa-spin"></i>
+      <i v-if="failure" class="fa fa-fw fa-times"></i>
+      <i v-if="success" class="fa fa-fw fa-check"></i>
+      <i v-if="inactive" class="fa fa-fw fa-pause-circle"></i>
     </div>
   </div>
 </template>
