@@ -1,7 +1,13 @@
 <template>
-  <div class="Job" :class="{ 'error': jobData.color == 'red', 'success': jobData.color == 'blue', 'progress': jobData.color == 'blue_anime' || jobData.color == 'red_anime', 'inactive': jobData.color == 'disabled' }">
+  <div class="Job" :class="{ 'failure': failure, 'success': success, 'progress': inProgress, 'inactive': inactive }">
     <div class="Job-name">
       {{ name }}
+    </div>
+    <div class="Job-progress">
+      <i v-if="inProgress" class="fa fa-refresh fa-spin"></i>
+      <i v-if="failure" class="fa fa-times"></i>
+      <i v-if="success" class="fa fa-check"></i>
+      <i v-if="inactive" class="fa fa-pause"></i>
     </div>
   </div>
 </template>
@@ -27,6 +33,18 @@ export default {
     };
   },
   computed: {
+    inactive() {
+      return this.jobData.color === 'disabled';
+    },
+    inProgress() {
+      return this.jobData.color === 'blue_anime' || this.jobData.color === 'red_anime';
+    },
+    success() {
+      return this.jobData.color === 'blue';
+    },
+    failure() {
+      return this.jobData.color === 'red';
+    },
     name() {
       return this.jobData.name.split('_').join(' ').replace('DEV', '').toUpperCase();
     },
@@ -45,13 +63,14 @@ export default {
 .Job {
   flex-grow: 0;
   padding: 1vh 2vw;
-  font-size: 4vh;
+  font-size: 3.7vh;
   display: flex;
   flex-grow: 1;
   align-items: center;
+  justify-content: space-between;
   border-width: 0 0 0.5vh 0;
   border-style: solid;
-  &.error {
+  &.failure {
     background-color: #c07070;
     border-color: darken(#c07070, 10%);
   }

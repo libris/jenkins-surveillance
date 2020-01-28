@@ -49,6 +49,8 @@ export default {
 </script>
 
 <style>
+@import "../node_modules/font-awesome/css/font-awesome.css";
+
 .container {
 
 }
