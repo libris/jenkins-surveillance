@@ -4,14 +4,14 @@
       {{ name }}
     </div>
     <div class="Job-progress">
-      <i v-if="status == 'building'" class="fa fa-2x fa-fw fa-refresh fa-spin"></i>
-      <i v-if="status == 'failure'" class="fa fa-2x fa-fw fa-times"></i>
-      <i v-if="status == 'success'" class="fa fa-2x fa-fw fa-check"></i>
-      <i v-if="status == 'inactive'" class="fa fa-2x fa-fw fa-pause-circle"></i>
+      <i :class="{ 'active': status == 'running' }" class="fa fa-2x fa-fw fa-refresh fa-spin"></i>
+      <i :class="{ 'active': status == 'failure' }" class="fa fa-2x fa-fw fa-times"></i>
+      <i :class="{ 'active': status == 'success' }" class="fa fa-2x fa-fw fa-check"></i>
+      <i :class="{ 'active': status == 'inactive' }" class="fa fa-2x fa-fw fa-pause-circle"></i>
     </div>
     <div class="Job-statusDetail">
-      <span v-if="status != 'building'">{{ timeSinceBuild }}</span>
-      <span v-if="status == 'building'">Building...</span>
+      <span v-if="status !== 'running'">{{ timeSinceBuild }}</span>
+      <span v-if="status == 'running'">running</span>
     </div>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
   },
   watch: {
     status(value, oldValue) {
-      if (value !== oldValue && oldValue === 'building') {
+      if (value !== oldValue && oldValue === 'running') {
         this.updateDetails();
       }
     }
@@ -50,9 +50,9 @@ export default {
     status() {
       switch(this.jobData.color) {
         case 'blue_anime':
-          return 'building';
+          return 'running';
         case 'red_anime':
-          return 'building';
+          return 'running';
         case 'blue':
           return 'success';
         case 'red':
@@ -72,6 +72,7 @@ export default {
       }, (error) => {
       }).then((result) => {
         this.details = result;
+        this.updateTime();
       });
     },
     updateTime() {
@@ -104,8 +105,9 @@ export default {
   flex-grow: 0;
   font-size: 3.5vw;
   align-items: center;
-  border-width: 0 0 0.5vh 0;
+  border-width: 0 0 0.75vw 0;
   border-style: solid;
+  transition: background-color 1s ease;
   &.failure {
     background-color: #c07070;
     border-color: darken(#c07070, 10%);
@@ -114,7 +116,7 @@ export default {
     background-color: #459a45;
     border-color: darken(#459a45, 10%);
   }
-  &.building {
+  &.running {
     background-color: #ffbc00;
     border-color: darken(#ffbc00, 10%);
   }
@@ -130,7 +132,17 @@ export default {
   }
   &-progress {
     flex-basis: 10%;
-    // background-color: pink;
+    position: relative;
+    i {
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      position: absolute;
+      left: 32%;
+      top: -4.5vw;
+      &.active {
+        opacity: 1;
+      }
+    }
     width: 100%;
   }
   &-statusDetail {
