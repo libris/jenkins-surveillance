@@ -43,8 +43,9 @@ export default {
   width: 100vw;
   margin: 0;
   display: flex;
-  align-items: stretch;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 </style>

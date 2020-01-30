@@ -90,5 +90,5 @@ sw.*
 *.swp
 
 
-# Auth config
-.auth
+# API config
+.api

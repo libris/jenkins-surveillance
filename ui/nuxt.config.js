@@ -1,4 +1,4 @@
-const auth = require('./.auth');
+const apiConfig = require('./.api');
 
 module.exports = {
   mode: 'spa',
@@ -47,14 +47,10 @@ module.exports = {
   axios: {
     proxy: true, // Can be also an object with default options
   },
-
   proxy: {
-    '/api/': {
-      target: 'https://olabli:11690d531c00f8ddf6c7307a8c5c46c317@jenkins.kb.se/job/Libris/view/Surveillance/api/json?pretty=true',
-      pathRewrite: {
-        '^/api' : ''
-      },
-      auth: auth.token,
+    '/job': {
+      target: apiConfig.instance,
+      auth: apiConfig.token,
       changeOrigin: true,
     }
   },

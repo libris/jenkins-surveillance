@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     fetchData() {
-      const fetchUrl = '/api/';
+      const fetchUrl = 'job/Libris/view/Surveillance/api/json?pretty=true';
       fetch(fetchUrl).then((response) => {
         return response.json();
       }, (error) => {
@@ -35,10 +35,10 @@ export default {
       });
     },
   },
-  async asyncData({params}) {
-    let response = await axios.get(`/api/`, { crossdomain: true });
-    return {result: response.data };
-  },
+  // async asyncData({params}) {
+  //   let response = await axios.get(`/api/`, { crossdomain: true });
+  //   return {result: response.data };
+  // },
   mounted() {
     setInterval(() => {
       this.fetchData();
@@ -66,7 +66,7 @@ export default {
 h1 {
   text-align: center;
   color: white;
-  font-size: 5vh;
+  font-size: 6vw;
   margin: 0 0 1vh 0;
   padding: 0;
 }

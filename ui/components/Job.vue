@@ -1,13 +1,17 @@
 <template>
-  <div class="Job" :class="{ 'failure': failure, 'success': success, 'progress': inProgress, 'inactive': inactive }">
+  <div class="Job" :class="status">
     <div class="Job-name">
       {{ name }}
     </div>
     <div class="Job-progress">
-      <i v-if="inProgress" class="fa fa-fw fa-refresh fa-spin"></i>
-      <i v-if="failure" class="fa fa-fw fa-times"></i>
-      <i v-if="success" class="fa fa-fw fa-check"></i>
-      <i v-if="inactive" class="fa fa-fw fa-pause-circle"></i>
+      <i v-if="status == 'progress'" class="fa fa-2x fa-fw fa-refresh fa-spin"></i>
+      <i v-if="status == 'failure'" class="fa fa-2x fa-fw fa-times"></i>
+      <i v-if="status == 'success'" class="fa fa-2x fa-fw fa-check"></i>
+      <i v-if="status == 'inactive'" class="fa fa-2x fa-fw fa-pause-circle"></i>
+    </div>
+    <div class="Job-statusDetail">
+      <span v-if="status != 'progress'">{{ lastBuilt }}</span>
+      <span v-if="status == 'progress'">Building...</span>
     </div>
   </div>
 </template>
@@ -17,6 +21,7 @@
 
 
 <script>
+import moment from 'moment';
 
 export default {
   name: 'Job',
@@ -30,30 +35,55 @@ export default {
   },
   data() {
     return {
+      details: null,
     };
   },
+  watch: {
+    status(value, oldValue) {
+      if (value !== oldValue && oldValue === 'progress') {
+        this.updateDetails();
+      }
+    }
+  },
   computed: {
-    inactive() {
-      return this.jobData.color === 'disabled';
+    lastBuilt() {
+      if (this.details) {
+        return moment(this.details.timestamp).fromNow();
+      }
+      return '-';
     },
-    inProgress() {
-      return this.jobData.color === 'blue_anime' || this.jobData.color === 'red_anime';
-    },
-    success() {
-      return this.jobData.color === 'blue';
-    },
-    failure() {
-      return this.jobData.color === 'red';
+    status() {
+      switch(this.jobData.color) {
+        case 'blue_anime':
+          return 'building';
+        case 'red_anime':
+          return 'building';
+        case 'blue':
+          return 'success';
+        case 'red':
+          return 'failure';
+      }
+      return 'inactive';
     },
     name() {
       return this.jobData.name.split('_').join(' ').replace('DEV', '').toUpperCase();
     },
   },
   methods: {
+    updateDetails() {
+      const fetchUrl = `/job/Libris/job/${this.jobData.name}/lastBuild/api/json?tree=result,timestamp,estimatedDuration`;
+      fetch(fetchUrl).then((response) => {
+        return response.json();
+      }, (error) => {
+      }).then((result) => {
+        this.details = result;
+      });
+    },
   },
   components: {
   },
-  mounted() { 
+  mounted() {
+    this.updateDetails();
   },
 };
 </script>
@@ -61,13 +91,16 @@ export default {
 <style lang="less">
 
 .Job {
-  flex-grow: 0;
-  padding: 1vh 2vw;
-  font-size: 3.7vh;
+  width: 24vw;
+  height: 26vw;
   display: flex;
-  flex-grow: 1;
+  margin-bottom: 1vw;
+  margin-right: 1vw;
+  flex-direction: column;
+  padding: 0 0 0.25rem 0;
+  flex-grow: 0;
+  font-size: 3.5vw;
   align-items: center;
-  justify-content: space-between;
   border-width: 0 0 0.5vh 0;
   border-style: solid;
   &.failure {
@@ -78,7 +111,7 @@ export default {
     background-color: #459a45;
     border-color: darken(#459a45, 10%);
   }
-  &.progress {
+  &.building {
     background-color: #ffbc00;
     border-color: darken(#ffbc00, 10%);
   }
@@ -87,6 +120,19 @@ export default {
     border-color: darken(#d1d1d1, 10%);
   }
   &-name {
+    padding: 0.5em 0.5em 0em 0.5em;
+    text-align: center;
+    overflow: hidden;
+    flex-basis: 75%;
+  }
+  &-progress {
+    flex-basis: 10%;
+    // background-color: pink;
+    width: 100%;
+  }
+  &-statusDetail {
+    flex-basis: 5%;
+    font-size: 70%;
   }
 }
 
