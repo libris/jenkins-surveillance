@@ -4,14 +4,14 @@
       {{ name }}
     </div>
     <div class="Job-progress">
-      <i v-if="status == 'progress'" class="fa fa-2x fa-fw fa-refresh fa-spin"></i>
+      <i v-if="status == 'building'" class="fa fa-2x fa-fw fa-refresh fa-spin"></i>
       <i v-if="status == 'failure'" class="fa fa-2x fa-fw fa-times"></i>
       <i v-if="status == 'success'" class="fa fa-2x fa-fw fa-check"></i>
       <i v-if="status == 'inactive'" class="fa fa-2x fa-fw fa-pause-circle"></i>
     </div>
     <div class="Job-statusDetail">
-      <span v-if="status != 'progress'">{{ lastBuilt }}</span>
-      <span v-if="status == 'progress'">Building...</span>
+      <span v-if="status != 'building'">{{ lastBuilt }}</span>
+      <span v-if="status == 'building'">Building...</span>
     </div>
   </div>
 </template>
