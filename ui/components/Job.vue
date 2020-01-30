@@ -10,7 +10,7 @@
       <i v-if="status == 'inactive'" class="fa fa-2x fa-fw fa-pause-circle"></i>
     </div>
     <div class="Job-statusDetail">
-      <span v-if="status != 'building'">{{ lastBuilt }}</span>
+      <span v-if="status != 'building'">{{ timeSinceBuild }}</span>
       <span v-if="status == 'building'">Building...</span>
     </div>
   </div>
@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       details: null,
+      timeSinceBuild: '-',
     };
   },
   watch: {
@@ -46,12 +47,6 @@ export default {
     }
   },
   computed: {
-    lastBuilt() {
-      if (this.details) {
-        return moment(this.details.timestamp).fromNow();
-      }
-      return '-';
-    },
     status() {
       switch(this.jobData.color) {
         case 'blue_anime':
@@ -79,11 +74,19 @@ export default {
         this.details = result;
       });
     },
+    updateTime() {
+      if (this.details) {
+        this.timeSinceBuild = moment(this.details.timestamp).fromNow();
+      } else {
+        this.timeSinceBuild = '-';
+      }
+    }
   },
   components: {
   },
   mounted() {
     this.updateDetails();
+    setInterval(this.updateTime, 5000);
   },
 };
 </script>
