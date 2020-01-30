@@ -3,15 +3,17 @@
     <div class="Job-name">
       {{ name }}
     </div>
-    <div class="Job-progress">
-      <i :class="{ 'active': status == 'running' }" class="fa fa-2x fa-fw fa-refresh fa-spin"></i>
-      <i :class="{ 'active': status == 'failure' }" class="fa fa-2x fa-fw fa-times"></i>
-      <i :class="{ 'active': status == 'success' }" class="fa fa-2x fa-fw fa-check"></i>
-      <i :class="{ 'active': status == 'inactive' }" class="fa fa-2x fa-fw fa-pause-circle"></i>
-    </div>
-    <div class="Job-statusDetail">
-      <span v-if="status !== 'running'">{{ timeSinceBuild }}</span>
-      <span v-if="status == 'running'">running</span>
+    <div class="Job-detailsBar">
+      <!-- <div class="Job-progress">
+        <i :class="{ 'active': status == 'running' }" class="fa fa-2x fa-fw fa-refresh fa-spin"></i>
+        <i :class="{ 'active': status == 'failure' }" class="fa fa-2x fa-fw fa-times"></i>
+        <i :class="{ 'active': status == 'success' }" class="fa fa-2x fa-fw fa-check"></i>
+        <i :class="{ 'active': status == 'inactive' }" class="fa fa-2x fa-fw fa-pause-circle"></i>
+      </div> -->
+      <div class="Job-statusDetail">
+        <span v-if="status !== 'running'">{{ timeSinceBuild }}</span>
+        <span v-if="status == 'running'">running</span>
+      </div>
     </div>
   </div>
 </template>
@@ -95,63 +97,86 @@ export default {
 <style lang="less">
 
 .Job {
-  width: 24vw;
-  height: 26vw;
+  position: relative;
+  width: 32.5vw;
+  height: 20vw;
   display: flex;
-  margin-bottom: 1vw;
-  margin-right: 1vw;
   flex-direction: column;
-  padding: 0 0 0.25rem 0;
-  flex-grow: 0;
+  // flex-grow: 0;
+  margin-bottom: 0.8vw;
+  margin-right: 0.8vw;
+  padding: 0 0 0.1vw 0;
   font-size: 3.5vw;
   align-items: center;
+  justify-content: space-around;
   border-width: 0 0 0.75vw 0;
   border-style: solid;
-  transition: background-color 1s ease;
   &.failure {
     background-color: #c07070;
     border-color: darken(#c07070, 10%);
   }
-  &.success {
+  &.success {    
     background-color: #459a45;
     border-color: darken(#459a45, 10%);
   }
   &.running {
-    background-color: #ffbc00;
+    background-color: #ffbb00e7;
     border-color: darken(#ffbc00, 10%);
+    &::after {
+      content: "";
+      background-image: url('~assets/stripetexture.png');
+      background-size: 600% 600%;
+      animation: stripes 2s linear infinite;
+      opacity: 0.5;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;   
+    }
   }
   &.inactive {
     background-color: #d1d1d1;
     border-color: darken(#d1d1d1, 10%);
   }
   &-name {
-    padding: 0.5em 0.5em 0em 0.5em;
-    font-size: 3.7vw;
+    // font-variant: small-caps;
+    font-size: 4.5vw;
+    // font-size: 5vw;
+    padding: 0.5vw;
     font-weight: bold;
     line-height: 1;
     text-align: center;
-    overflow: hidden;
-    flex-basis: 75%;
+  }
+  &-detailsBar {
+    position: absolute;
+    bottom: 0;
+    flex-basis: 10%;
+    flex-direction: row;
   }
   &-progress {
-    flex-basis: 10%;
-    position: relative;
     i {
       transition: opacity 0.5s ease;
       opacity: 0;
-      position: absolute;
-      left: 32%;
-      top: -4.5vw;
       &.active {
         opacity: 1;
       }
     }
-    width: 100%;
   }
   &-statusDetail {
-    flex-basis: 5%;
+    font-weight: bold;
     font-size: 70%;
   }
+}
+
+@keyframes stripes {
+	0% {
+		background-position: 0% 0%;
+	}
+	100% {
+		background-position: 36% 36%;
+	}
 }
 
 </style>
