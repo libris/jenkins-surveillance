@@ -49,7 +49,7 @@ module.exports = {
   },
   proxy: {
     '/job': {
-      target: apiConfig.instance,
+      target: `https://${apiConfig.token}@${apiConfig.instance}`,
       auth: apiConfig.token,
       changeOrigin: true,
     }

@@ -1,6 +1,6 @@
 var apiConfig = {
   token: 'user:11690c531c00f8ddf6c7307a8c5c46c317',
-  instance: 'https://myjenkins.mydomain.com'
+  instance: 'myjenkins.mydomain.com'
 };
 
 module.exports = apiConfig;
