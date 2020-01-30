@@ -114,6 +114,7 @@ export default {
   &.failure {
     background-color: #c07070;
     border-color: darken(#c07070, 10%);
+    animation: alert 2s linear infinite;
   }
   &.success {    
     background-color: #459a45;
@@ -141,9 +142,7 @@ export default {
     border-color: darken(#d1d1d1, 10%);
   }
   &-name {
-    // font-variant: small-caps;
-    font-size: 4.5vw;
-    // font-size: 5vw;
+    font-size: 4.8vw;
     padding: 0.5vw;
     font-weight: bold;
     line-height: 1;
@@ -167,6 +166,29 @@ export default {
   &-statusDetail {
     font-weight: bold;
     font-size: 70%;
+  }
+}
+
+@keyframes alert {
+  0% {
+    text-shadow: 0px 0px 1.5vw #ff00002a;
+    box-shadow: 0 0 3vw 0px #ff000046;
+    background-color: #b46262;
+  }
+  40% {
+    text-shadow: 0px 0px 1.5vw #ff0000ab;
+    box-shadow: 0 0 3vw 0px #ff0000;
+    background-color: #b95252;
+  }
+  50% {
+    text-shadow: 0px 0px 1.5vw #ff00002a;
+    box-shadow: 0 0 3vw 0px #ff000046;
+    background-color: #b46262;
+  }
+  100% {
+    text-shadow: 0px 0px 1.5vw #ff00002a;
+    box-shadow: 0 0 3vw 0px #ff000046;
+    background-color: #b46262;
   }
 }
 
