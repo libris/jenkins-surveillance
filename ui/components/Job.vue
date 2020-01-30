@@ -174,21 +174,21 @@ export default {
     text-shadow: 0px 0px 1.5vw #ff00002a;
     box-shadow: 0 0 3vw 0px #ff000046;
     background-color: #b46262;
+    color: #000;
   }
-  40% {
+  10% {
+    color: rgb(145, 0, 0);
+  }
+  20% {
     text-shadow: 0px 0px 1.5vw #ff0000ab;
     box-shadow: 0 0 3vw 0px #ff0000;
     background-color: #b95252;
-  }
-  50% {
-    text-shadow: 0px 0px 1.5vw #ff00002a;
-    box-shadow: 0 0 3vw 0px #ff000046;
-    background-color: #b46262;
   }
   100% {
     text-shadow: 0px 0px 1.5vw #ff00002a;
     box-shadow: 0 0 3vw 0px #ff000046;
     background-color: #b46262;
+    color: #000;
   }
 }
 
