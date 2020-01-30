@@ -40,7 +40,7 @@ export default {
   },
   watch: {
     status(value, oldValue) {
-      if (value !== oldValue && oldValue === 'progress') {
+      if (value !== oldValue && oldValue === 'building') {
         this.updateDetails();
       }
     }
