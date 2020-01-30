@@ -126,6 +126,9 @@ export default {
   }
   &-name {
     padding: 0.5em 0.5em 0em 0.5em;
+    font-size: 3.7vw;
+    font-weight: bold;
+    line-height: 1;
     text-align: center;
     overflow: hidden;
     flex-basis: 75%;
