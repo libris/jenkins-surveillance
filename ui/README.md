@@ -1,6 +1,19 @@
-# ui
+# Jenkins surveillance page
 
-> Jenkins surveillance page
+Thin backend and ui to show jenkins build statuses through the Jenkins REST-API.
+
+## Configuration
+
+In `/ui`-folder
+
+````
+$ cp .config.ln .config && cp .secrets.ln .secrets
+````
+
+* Add a [jenkins token](https://jenkins.io/blog/2018/07/02/new-api-token-system/) to `.secrets`
+
+* Edit `.config` to your preferences.
+
 
 ## Build Setup
 

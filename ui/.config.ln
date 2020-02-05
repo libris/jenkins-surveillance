@@ -5,6 +5,7 @@ var config = {
   ],
   title: 'SURVEILLANCE',
   listViews: [
+    // An array of all the "views" you want to include
     'job/MyProject/view/Surveillance',
   ],
   instance: 'https://myjenkins.mydomain.com',
