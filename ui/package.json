@@ -4,6 +4,7 @@
   "description": "Jenkins surveillance page",
   "author": "Ola Blissing <ola.blissing@gmail.com>",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
