@@ -63,12 +63,25 @@ export default {
       return 'inactive';
     },
     name() {
-      return this.jobData.name.split('_').join(' ').replace('DEV', '').toUpperCase();
+      const replaceArr = [
+        { match: /_/g, write: ' ' },
+        { match: /DEV/g, write: '' },
+      ];
+      let str = this.jobData.name;
+      for (let i = 0; i < replaceArr.length ; i++) {
+        const node = replaceArr[i];
+        str = str.replace(node.match, node.write);
+      }
+      return str.toUpperCase();
+    },
+    config() {
+      return this.$store.state.config.config;
     },
   },
   methods: {
     updateDetails() {
-      const fetchUrl = `/job/Libris/job/${this.jobData.name}/lastBuild/api/json?tree=result,timestamp,estimatedDuration`;
+      const base = this.jobData.url.replace(this.config.instance, '');
+      const fetchUrl = `${base}lastBuild/api/json?tree=result,timestamp,estimatedDuration`;
       fetch(fetchUrl).then((response) => {
         return response.json();
       }, (error) => {

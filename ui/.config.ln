@@ -1,0 +1,13 @@
+var config = {
+  jobNameReplace: [
+    // Match can use a regex or just a string, example here replaces underscore with whitespace
+    { match: /_/g, write: ' ' },
+  ],
+  title: 'SURVEILLANCE',
+  listViews: [
+    'job/MyProject/view/Surveillance',
+  ],
+  instance: 'https://myjenkins.mydomain.com',
+};
+
+module.exports = config;

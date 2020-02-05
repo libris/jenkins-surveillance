@@ -1,4 +1,5 @@
-const apiConfig = require('./.api');
+const secrets = require('./.secrets');
+const config = require('./.config');
 
 module.exports = {
   mode: 'spa',
@@ -49,8 +50,8 @@ module.exports = {
   },
   proxy: {
     '/job': {
-      target: `https://${apiConfig.token}@${apiConfig.instance}`,
-      auth: apiConfig.token,
+      target: config.instance,
+      auth: secrets.token,
       changeOrigin: true,
     }
   },

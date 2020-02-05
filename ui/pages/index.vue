@@ -1,49 +1,32 @@
 <template>
   <div class="container">
-    <h1>LIBRIS-DEV STATUS</h1>
+    <h1>{{ config.title }}</h1>
     <div class="data-container">
-      <JenkinsData v-if="fetchedData" :table-data="fetchedData" />
+      <JobList :list-path="listPath" :key="index" v-for="(listPath, index) in config.listViews" />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import JenkinsData from '@/components/JenkinsData';
+import JobList from '@/components/JobList';
 
 export default {
   name: 'Index',
   data() {
     return {
-      fetchedData: null,
-      fetchNo: 0,
     };
   },
+  props: {
+
+  },
   components: {
-    JenkinsData,
+    JobList,
   },
   computed: {
-  },
-  methods: {
-    fetchData() {
-      const fetchUrl = 'job/Libris/view/Surveillance/api/json?pretty=true';
-      fetch(fetchUrl).then((response) => {
-        return response.json();
-      }, (error) => {
-      }).then((result) => {
-        this.fetchedData = result;
-      });
+    config() {
+      return this.$store.state.config.config;
     },
-  },
-  // async asyncData({params}) {
-  //   let response = await axios.get(`/api/`, { crossdomain: true });
-  //   return {result: response.data };
-  // },
-  mounted() {
-    setInterval(() => {
-      this.fetchData();
-      console.log("fetch");
-    }, 2000);
   },
 }
 </script>
@@ -51,9 +34,6 @@ export default {
 <style>
 @import "../node_modules/font-awesome/css/font-awesome.css";
 
-.container {
-
-}
 
 .data-container {
   margin: 0;
