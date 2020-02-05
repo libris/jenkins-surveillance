@@ -1,8 +1,8 @@
 {
-  "name": "ui",
+  "name": "jenkins-surveillance",
   "version": "1.0.0",
   "description": "Jenkins surveillance page",
-  "author": "Ola Blissing",
+  "author": "Ola Blissing <ola.blissing@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
