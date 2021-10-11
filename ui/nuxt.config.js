@@ -45,6 +45,8 @@ module.exports = {
     '@nuxtjs/proxy',
   ],
 
+  telemetry: false,
+
   axios: {
     proxy: true, // Can be also an object with default options
   },
