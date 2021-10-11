@@ -159,6 +159,7 @@ export default {
     padding: 0.5vw;
     font-weight: bold;
     line-height: 1;
+    word-break: break-word;
     text-align: center;
   }
   &-detailsBar {
