@@ -2,7 +2,7 @@ const secrets = require('./.secrets');
 const config = require('./.config');
 
 module.exports = {
-  mode: 'spa',
+  ssr: true,
   /*
   ** Headers of the page
   */
