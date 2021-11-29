@@ -54,10 +54,8 @@ export default {
 
 .JobList {
   width: 100vw;
+  height: 100vh;
   margin: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
 }
 
 </style>
