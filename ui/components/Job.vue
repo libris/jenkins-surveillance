@@ -111,12 +111,12 @@ export default {
 
 .Job {
   position: relative;
-  width: 32.5vw;
   height: 20vw;
   display: flex;
   flex-direction: column;
   // flex-grow: 0;
-  margin-bottom: 0.8vw;
+  margin-right: 0.2em;
+  margin-bottom: 0.2em;
   padding: 0 0 0.1vw 0;
   font-size: 3.5vw;
   align-items: center;
