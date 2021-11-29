@@ -111,15 +111,16 @@ export default {
 
 .Job {
   position: relative;
+  width: 32.5vw;
+  height: 20vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   // flex-grow: 0;
   margin-bottom: 0.8vw;
-  margin-right: 0.8vw;
   padding: 0 0 0.1vw 0;
   font-size: 3.5vw;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-around;
   border-width: 0 0 0.75vw 0;
   border-style: solid;
   &.failure {
@@ -161,7 +162,10 @@ export default {
     text-align: center;
   }
   &-detailsBar {
-    padding: 0 .2em 0 0;
+    position: absolute;
+    bottom: 0;
+    flex-basis: 10%;
+    flex-direction: row;
   }
   &-progress {
     i {

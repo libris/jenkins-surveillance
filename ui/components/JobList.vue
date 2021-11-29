@@ -54,8 +54,9 @@ export default {
 
 .JobList {
   width: 100vw;
-  height: 100vh;
   margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 </style>
