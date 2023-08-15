@@ -1,4 +1,4 @@
-import config from '../.config';
+import config from '../.surveillance.config.js';
 
 export const state = () => ({
   config,

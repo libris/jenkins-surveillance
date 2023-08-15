@@ -93,3 +93,5 @@ sw.*
 # API config
 .config
 .secrets
+.secrets.config.js
+.surveillance.config.js

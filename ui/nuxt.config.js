@@ -1,5 +1,5 @@
-const secrets = require('./.secrets');
-const config = require('./.config');
+const secrets = require('./.secrets.config.js');
+const config = require('./.surveillance.config.js');
 
 module.exports = {
   ssr: true,
@@ -61,6 +61,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    transpile: [({ isLegacy }) => isLegacy && 'axios'],
     /*
     ** You can extend webpack config here
     */
